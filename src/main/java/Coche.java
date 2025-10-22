@@ -1,10 +1,26 @@
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.util.List;
 
+@XmlRootElement
 public class Coche {
+    @XmlAttribute
     private int id;
+
+    @XmlElement
     private String matricula;
+
+    @XmlElement
     private String marca;
+
+    @XmlElement
     private String modelo;
+
+    @XmlElementWrapper(name = "equipamiento")
+    @XmlElement(name = "extra")
     private List<String> equipamiento;
 
     public Coche() {
@@ -18,44 +34,8 @@ public class Coche {
         this.equipamiento = equipamiento;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public List<String> getEquipamiento() {
-        return equipamiento;
-    }
-
-    public void setEquipamiento(List<String> equipamiento) {
-        this.equipamiento = equipamiento;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
     public String getMatricula() {
         return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
     }
 
     @Override
