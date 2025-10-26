@@ -1,6 +1,8 @@
-public class main {
+public class Main {
     public static void main(String[] args) {
         Concesionario c = new Concesionario();
-        c.importarCSV();
+        c.cargarCSV();
+
+        c.borrarPorMatricula();
     }
 }

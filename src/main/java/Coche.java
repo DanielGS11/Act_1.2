@@ -1,7 +1,4 @@
-import jakarta.xml.bind.annotation.XmlAttribute;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlElementWrapper;
-import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,6 +33,15 @@ public class Coche {
 
     public String getMatricula() {
         return matricula;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @XmlTransient
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

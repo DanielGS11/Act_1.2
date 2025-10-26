@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <concesionario>
     <coche id="1">
-        <matricula>3456JKL</matricula>
-        <marca>Seat</marca>
-        <modelo>Ibiza</modelo>
-        <equipamiento>
-            <extra>Climatizador</extra>
-            <extra>Sensor de aparcamiento</extra>
-        </equipamiento>
-    </coche>
-    <coche id="2">
         <matricula>7890MNP</matricula>
         <marca>Peugeot</marca>
         <modelo>208</modelo>
@@ -17,7 +8,7 @@
             <extra>Navegador GPS</extra>
         </equipamiento>
     </coche>
-    <coche id="3">
+    <coche id="2">
         <matricula>1122QRS</matricula>
         <marca>Toyota</marca>
         <modelo>Yaris</modelo>

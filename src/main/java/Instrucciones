@@ -1,0 +1,38 @@
+Metodos a Ralizar:
+
+- **HECHO** Importar coches desde CSV: leer un fichero CSV y añadir los coches a la base de datos (XML) ya cargada en memoria. controlar que no se inserten matrículas duplicadas.
+- **HECHO** Insertar coche nuevo: solicitará los datos y lo añadirá a la base de datos (XML).
+- **HECHO** Ordenar coches por matrícula.
+- **HECHO** Borrar un registro concreto buscando por matrícula (que es la clave).
+- Modificar un registro concreto buscando por matrícula. No se puede modificar el campo "Matrícula" de un registro.
+- Exportar a JSON: El programa dará dos opciones:
+--- Exportar toda la base de datos.
+--- Buscar un coche por matrícula y exportarlo únicamente.
+
+- Importar desde JSON. El programa dará dos opciones:
+--- leer un JSON y cargarlo como la nueva base de datos (XML) sobrescribiendo el actual.
+--- leer un JSON de un coche e insertarlo en la base de datos.
+
+- Generar informe resumen: fichero de texto (informe_concesionario.txt), contenido:
+--- Número total de coches.
+--- Listado de coches agrupados por marca.
+--- Extra o equipamiento que más se repite.
+
+Tener en cuenta:
+- Se debe usar un fichero de configuración (config.properties) para las rutas de los ficheros
+- En el fichero XML, la matrícula es el campo clave, no puede haber dos registros con la misma matrícula.
+- Crear clases Coche y Concesionario para modelar el contenido de los registros. La estructura y anotaciones JAXB  deben basarse en el fichero concesionario_plantilla.xml.
+- Cualquier modificación en la base de datos debe persistirse de vuelta al fichero XML (marshalling).
+- Usar las clases y anotaciones de JAXB para el mapeo XML y la librería externa Jackson para la (de)serialización con JSON.
+- Controlar las excepciones. No vale con tener sólo la Excepción padre.
+- Comentarios Javadoc para los métodos públicos y comentarios de línea donde sea oportuno.
+- Se valorará positivamente la NO repetición de código y el uso de métodos auxiliares.
+
+Criterios de Evaluación
+a) Se han utilizado clases para la gestión de ficheros y directorios.
+b) Se han valorado las ventajas y los inconvenientes de las distintas formas de acceso.
+c) Se han utilizado clases para recuperar información almacenada en ficheros.
+d) Se han utilizado clases para almacenar información en ficheros.
+e) Se han utilizado clases para realizar conversiones entre diferentes formatos de ficheros.
+f) Se han previsto y gestionado las excepciones.
+g) Se han probado y documentado las aplicaciones desarrolladas.
