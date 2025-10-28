@@ -1,0 +1,21 @@
+{
+  "coches" : [ {
+    "id" : 1,
+    "matricula" : "3456JKL",
+    "marca" : "Seat",
+    "modelo" : "Ibiza",
+    "equipamiento" : [ "Climatizador", "Sensor de aparcamiento" ]
+  }, {
+    "id" : 2,
+    "matricula" : "7890MNP",
+    "marca" : "Peugeot",
+    "modelo" : "208",
+    "equipamiento" : [ "Navegador GPS" ]
+  }, {
+    "id" : 3,
+    "matricula" : "1122QRS",
+    "marca" : "Toyota",
+    "modelo" : "Yaris",
+    "equipamiento" : [ "Llantas de aleación", "Techo solar", "Cámara trasera" ]
+  } ]
+}

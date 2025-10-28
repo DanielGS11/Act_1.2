@@ -11,12 +11,10 @@
     </coche>
     <coche id="2">
         <matricula>7890MNP</matricula>
-        <marca>Ford</marca>
-        <modelo>Focus</modelo>
+        <marca>Peugeot</marca>
+        <modelo>208</modelo>
         <equipamiento>
-            <extra>GPS</extra>
-            <extra>Youtube</extra>
-            <extra>Bluetooyh</extra>
+            <extra>Navegador GPS</extra>
         </equipamiento>
     </coche>
     <coche id="3">

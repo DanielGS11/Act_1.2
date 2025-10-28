@@ -58,7 +58,7 @@ public class Coche {
 
     @Override
     public String toString() {
-        return String.format("\nID: %d\nMatrícula: %s\nMarca: %s\nModelo: %s\nEquipamiento Incluido: %s",
+        return String.format("ID: %d\n\tMatrícula: %s\n\tMarca: %s\n\tModelo: %s\n\tEquipamiento Incluido: %s\n",
                 id, matricula, marca, modelo, equipamiento.isEmpty() ? "Ninguno" : equipamiento);
     }
 }
