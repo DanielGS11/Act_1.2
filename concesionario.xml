@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <concesionario>
     <coche id="1">
-        <matricula>7890MNP</matricula>
-        <marca>Peugeot</marca>
-        <modelo>208</modelo>
+        <matricula>3456JKL</matricula>
+        <marca>Seat</marca>
+        <modelo>Ibiza</modelo>
         <equipamiento>
-            <extra>Navegador GPS</extra>
+            <extra>Climatizador</extra>
+            <extra>Sensor de aparcamiento</extra>
         </equipamiento>
     </coche>
     <coche id="2">
+        <matricula>7890MNP</matricula>
+        <marca>Ford</marca>
+        <modelo>Focus</modelo>
+        <equipamiento>
+            <extra>GPS</extra>
+            <extra>Youtube</extra>
+            <extra>Bluetooyh</extra>
+        </equipamiento>
+    </coche>
+    <coche id="3">
         <matricula>1122QRS</matricula>
         <marca>Toyota</marca>
         <modelo>Yaris</modelo>

@@ -4,7 +4,7 @@ Metodos a Ralizar:
 - **HECHO** Insertar coche nuevo: solicitará los datos y lo añadirá a la base de datos (XML).
 - **HECHO** Ordenar coches por matrícula.
 - **HECHO** Borrar un registro concreto buscando por matrícula (que es la clave).
-- Modificar un registro concreto buscando por matrícula. No se puede modificar el campo "Matrícula" de un registro.
+- **HECHO** Modificar un registro concreto buscando por matrícula. No se puede modificar el campo "Matrícula" de un registro.
 - Exportar a JSON: El programa dará dos opciones:
 --- Exportar toda la base de datos.
 --- Buscar un coche por matrícula y exportarlo únicamente.

@@ -31,10 +31,6 @@ public class Coche {
         this.equipamiento = equipamiento;
     }
 
-    public String getMatricula() {
-        return matricula;
-    }
-
     public int getId() {
         return id;
     }
@@ -42,6 +38,22 @@ public class Coche {
     @XmlTransient
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public List<String> getEquipamiento() {
+        return equipamiento;
     }
 
     @Override
