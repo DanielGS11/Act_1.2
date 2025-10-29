@@ -1,26 +1,31 @@
-- Numero Total de Coches: 3
+- Numero Total de Coches: 4
 - Coches Agrupados Por Marca:
  -- Seat :
-	ID: 1
+	ID: 2
 	Matrícula: 3456JKL
 	Marca: Seat
 	Modelo: Ibiza
-	Equipamiento Incluido: [Climatizador, Sensor de aparcamiento]
+	Equipamiento Incluido: Ninguno
+	ID: 4
+	Matrícula: 7658KJL
+	Marca: Seat
+	Modelo: Leon
+	Equipamiento Incluido: Ninguno
 
 -- Toyota :
-	ID: 3
+	ID: 1
 	Matrícula: 1122QRS
 	Marca: Toyota
-	Modelo: Yaris
-	Equipamiento Incluido: [Llantas de aleación, Techo solar, Cámara trasera]
+	Modelo: Corola
+	Equipamiento Incluido: Ninguno
 
 -- Peugeot :
-	ID: 2
+	ID: 3
 	Matrícula: 7890MNP
 	Marca: Peugeot
 	Modelo: 208
-	Equipamiento Incluido: [Navegador GPS]
+	Equipamiento Incluido: Ninguno
 
 
-- Equipamiento que mas se repite: Climatizador (1 veces)
+- Equipamiento que mas se repite: Ningun Coche dispone de Equipamientos
 

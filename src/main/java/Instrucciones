@@ -13,7 +13,7 @@ Metodos a Ralizar:
 --- leer un JSON y cargarlo como la nueva base de datos (XML) sobrescribiendo el actual.
 --- leer un JSON de un coche e insertarlo en la base de datos.
 
-- Generar informe resumen: fichero de texto (informe_concesionario.txt), contenido:
+- **HECHO** Generar informe resumen: fichero de texto (informe_concesionario.txt), contenido:
 --- Número total de coches.
 --- Listado de coches agrupados por marca.
 --- Extra o equipamiento que más se repite.
