@@ -17,15 +17,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 /*
-Esta clase se encargara de los metodos que necesita nuestra base de datos, creara un objeto concesionario para
-acceder a su lista de coches y creara una lista con las rutas de los ficheros de config.properties y otra que cargue
-las lineas del fichero CSV
+Esta clase se encargara de los metodos que necesita nuestra base de datos, creara un objeto concesionario
+(Donde se iran guardando los datos de los registros) para acceder a su lista de coches y creara una lista con las rutas
+de los ficheros de config.properties y otra que cargue las lineas del fichero CSV
 
 NOTA: los metodos auxiliares estan agrupados en el final del archivo
  */
 public class FuncionesConcesionario {
     private Concesionario concesionario = new Concesionario();
 
+    /*
+    POSICION DE LAS RUTAS:
+    - 0: Base de Datos (Fichero XML). path_XML
+    - 1: Fichero CSV. path_CSV
+    - 2: Fichero JSON. path_JSON
+    - 3: Fichero del Informe de Resumen de la Base de Datos. path_Informe
+     */
     private List<Path> rutasFicheros = new ArrayList<>();
 
     private List<String> lineas = new ArrayList<>();
@@ -278,8 +285,9 @@ public class FuncionesConcesionario {
     }
 
     /**
-     Metodo para cargar la Base de Datos en un archivo JSON
-     @param opc: Opcion de exportacion que ingresa el usuario en el menu de la clase Main
+     * Metodo para cargar la Base de Datos en un archivo JSON
+     *
+     * @param opc: Opcion de exportacion que ingresa el usuario en el menu de la clase Main
      */
     public void exportarJSON(String opc) {
         /*
@@ -331,8 +339,9 @@ public class FuncionesConcesionario {
     }
 
     /**
-     Metodo para cargar la base de dtaos en un archivo JSON
-     @param opc: Opcion de exportacion que ingresa el usuario en el menu de la clase Main
+     * Metodo para cargar la base de dtaos en un archivo JSON
+     *
+     * @param opc: Opcion de exportacion que ingresa el usuario en el menu de la clase Main
      */
     public void importarJSON(String opc) {
         /*
@@ -496,7 +505,10 @@ public class FuncionesConcesionario {
         }
     }
 
-    // ------------------------ METODOS AUXILIARES ---------------------------------
+    /*
+        ------------------------ METODOS AUXILIARES ---------------------------------
+     */
+
     //Metodo Auxiliar que carga las rutas del fichero config.properties en la lista de rutas
     private List<Path> cargarPaths() {
         /*
@@ -536,46 +548,61 @@ public class FuncionesConcesionario {
         }
 
         try {
+            //Leemos las lineas de la ruta almacenada en la posición 1 de la lista, que es la del fichero CSV
             lineas = Files.readAllLines(cargarPaths().get(1));
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
 
+        //Devolvemos la lista con las lineas ya cargadas
         return lineas;
     }
 
+    //Metodo Auxiliar para añadir un coche a la lista
     private void addCoche(String matricula, String marca, String modelo, List<String> equipamiento) {
+        /*
+        Recogemos los parametros que se nos da al llamar al metodo para crear un objeto Coche y luego añadirlo
+        a la lista, la id se asignara automaticamente en funcion de la lista
+
+        NOTA: En la id, se calcula el tamaño de la lista y se le suma 1 ya que, si es el primer coche en añadirse,
+        por lo que su id seria 1, al ser el tamaño de la lista 0, se le suma 1, el segundo coche seria el de id 2 pero
+        la lista tendria tamaño 1 y asi, por lo que se le suma 1
+         */
         Coche coche = new Coche(concesionario.getCoches().size() + 1, matricula, marca, modelo, equipamiento);
         concesionario.getCoches().add(coche);
     }
 
+    //Metodo Auxiliar para cargar los datos en la Base de Datos
     private void marshalXML() {
         try {
+            //Creamos el contexto que se le dara al marshaller, es decir, que sera una clase Concesionario
             JAXBContext context = JAXBContext.newInstance(Concesionario.class);
 
+            //Creamos el marshaller y le asignamos el formato para que haya estructura
             Marshaller marshaller = context.createMarshaller();
 
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            File xml = new File(cargarPaths().getFirst().toString());
-
-            marshaller.marshal(concesionario, xml);
+            /*
+            Por ultimo cargamos los datos en la Base de Datos asignandole el objeto a cargar
+            y la ruta de la Base de Datos
+             */
+            marshaller.marshal(concesionario, cargarPaths().getFirst().toFile());
         } catch (JAXBException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
 
+    //Metodo Auxiliar para cargar los datos en el fichero JSON
     private void marshalJSON() {
         try {
-            Files.deleteIfExists(cargarPaths().get(2));
-
-            System.out.println(cargarPaths().get(2).toFile().exists());
+            //Creamos el mapeador, que hara de intermediario para cargar (o descargar) los datos en el JSON
             ObjectMapper om = new ObjectMapper();
 
-            //Dar formato a salida
+            //Damos formato al fichero JSON que cargara, para que haya una estructura y saltos de linea
             om.enable(SerializationFeature.INDENT_OUTPUT);
 
-            //Serializar a JSON
+            //Ejecutamos el mapeo asignandole la ruta del fichero JSON y el objeto a cargar
             om.writeValue(rutasFicheros.get(2).toFile(), concesionario);
 
         } catch (IOException e) {
@@ -585,15 +612,20 @@ public class FuncionesConcesionario {
 
     }
 
+    //Metodo Auxiliar para cargar los datos de la Base de Datos
     private void unmarshalXML() {
         try {
+            //Creamos el contexto que dira de que clase seran los datos
             JAXBContext context = JAXBContext.newInstance(Concesionario.class);
 
+            //Creamos el unmarshaller, que cargara los datos de la Base de Datos
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
-            File xml = new File(cargarPaths().getFirst().toString());
-
-            concesionario = (Concesionario) unmarshaller.unmarshal(xml);
+            /*
+            modificamos nuestro concesionario para que contenga los datos (Haciendo una conversion o casting) de la
+            Base de Datos ejecutando el unmarshaller asignandole la ruta de la Base de Datos
+             */
+            concesionario = (Concesionario) unmarshaller.unmarshal(cargarPaths().getFirst().toFile());
 
         } catch (JAXBException e) {
             System.out.println("Error: " + e.getMessage());
@@ -601,20 +633,20 @@ public class FuncionesConcesionario {
 
     }
 
+    //Metodo Auxiliar para cargar los datos del fichero JSON
     private void unmarshalJSON() {
+        //Creamos el mapeador que nos hara de intermediario
         ObjectMapper om = new ObjectMapper();
 
-        //Dar formato a salida
-        om.enable(SerializationFeature.INDENT_OUTPUT);
-
         try {
-            //Serializar a JSON
+            /*
+            Modificamos nuestro objeto concesionario con los datos que recibiremos al ejecutar el mapper, asignandole
+            la ruta del fichero y la clase de los datos
+             */
             concesionario = om.readValue(cargarPaths().get(2).toFile(), Concesionario.class);
 
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
-
-
     }
 }
